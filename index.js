@@ -43,7 +43,9 @@ rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
     console.log(`${result.emoji}  Enerji: ${user.energyLevel}/10`);
     console.log(`💬 FALLOW: "${user.name}, ${result.message}"`);
     console.log("--------------------------------");
-    console.log(`📊 Geçmiş: ${energyHistory}`);
-
+    console.log("📊 Geçmiş: ");
+    for (let i = 0; i < energyHistory.length; i++) {
+        console.log(`Gün ${i + 1}: ${energyHistory[i]}`);
+    }
     rl.close();
 });

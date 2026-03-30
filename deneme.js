@@ -1,7 +1,5 @@
-const energyHistory = [];
+const energyHistory = [7, 5, 9, 3, 10];
 
-energyHistory.push(7);
-energyHistory.push(5);
-energyHistory.push(9);
-
-console.log(energyHistory.length);
+for (let i = 0; i < energyHistory.length; i++) {
+    console.log(`Gün ${i + 1}: ${energyHistory[i]}`);
+}
