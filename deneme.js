@@ -1,13 +1,7 @@
-const user = {
-    name: "Berat",
-    age: 20,
-    isPremium: false,
-};
+const energyHistory = [];
 
-user.isPremium = true;
-user.energyLevel = 10;
+energyHistory.push(7);
+energyHistory.push(5);
+energyHistory.push(9);
 
-console.log(user.name);
-console.log(user.age);
-console.log(user.isPremium);
-console.log(user.energyLevel);
+console.log(energyHistory.length);

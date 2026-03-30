@@ -8,6 +8,8 @@ const user = {
     energyLevel: 0
 };
 
+const energyHistory = [];
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -33,6 +35,7 @@ console.log("");
 
 rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
     user.energyLevel = Number(answer);
+    energyHistory.push(user.energyLevel);
     const result = getCoachMessage(user.energyLevel);
 
     console.log("");
@@ -40,6 +43,7 @@ rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
     console.log(`${result.emoji}  Enerji: ${user.energyLevel}/10`);
     console.log(`💬 FALLOW: "${user.name}, ${result.message}"`);
     console.log("--------------------------------");
+    console.log(`📊 Geçmiş: ${energyHistory}`);
 
     rl.close();
 });
