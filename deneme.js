@@ -1,7 +1,12 @@
-const numbers = [7, 5, 9, 3, 8];
+const wait = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve,ms));
+};
 
-const strongDays = numbers.filter((number) => {
-    return number >= 7;
-});
+const main = async () => {
+    console.log("1");
+    await wait(2000);
+    console.log("2");
+    console.log("3");
+};
 
-console.log(strongDays);
+main();

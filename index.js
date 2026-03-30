@@ -1,4 +1,4 @@
-const { getCoachMessage } = require("./coach");
+const { getCoachMessage, getAICoachMessage } = require("./coach");
 
 const readline = require("readline");
 
@@ -17,13 +17,15 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
-function showReport() {
+const showReport = async () => {
     const result = getCoachMessage(user.energyLevel);
+    const aiMessage = await getAICoachMessage(user.energyLevel, user.name);
 
     console.log("");
     console.log("--------------------------------");
     console.log(`${result.emoji}  Enerji: ${user.energyLevel}/10`);
     console.log(`💬 FALLOW: "${user.name}, ${result.message}"`);
+    console.log(`🤖 AI Koç: "${aiMessage}"`);
     console.log("--------------------------------");
     console.log("📊 Geçmiş: ");
     for (let i = 0; i < energyHistory.length; i++) {
@@ -38,7 +40,7 @@ function showReport() {
     console.log(`⭐ Ortalama Enerji: ${ort}/10`);
 
     const strongDays = energyHistory.filter((number) => {
-        return number>= 7;
+        return number >= 7;
     });
 
     const lowDays = energyHistory.filter((number) => {
@@ -57,10 +59,10 @@ console.log("");
 askEnergy();
 
 function askEnergy() {
-    rl.question("Enerji Seviyeni gir (1-10): ", (answer) => {
+    rl.question("Enerji Seviyeni gir (1-10): ", async (answer) => {
         user.energyLevel = Number(answer);
         energyHistory.push(user.energyLevel);
-        showReport();
+        await showReport();
 
         rl.question("Yeni giriş yapmak ister misin? (e/h): ", (choice) => {
             if (choice === "e") {
@@ -71,6 +73,6 @@ function askEnergy() {
             } else {
                 console.log("Tanımlanamayan bir değişken girdiniz, tekrar girin: ");
             }
-        })
-    })
+        });
+    });
 }
