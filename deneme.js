@@ -1,5 +1,10 @@
-const energyHistory = [7, 5, 9, 3, 10];
+const numbers = [7, 5, 9, 3, 8];
 
-for (let i = 0; i < energyHistory.length; i++) {
-    console.log(`Gün ${i + 1}: ${energyHistory[i]}`);
-}
+const total = numbers.reduce(function(sum,number) {
+    return sum + number;
+}, 0);
+
+const ortalama = total / numbers.length;
+
+console.log(total);
+console.log(ortalama);
