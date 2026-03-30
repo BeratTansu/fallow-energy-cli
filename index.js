@@ -64,10 +64,23 @@ console.log(`  ${appName} Energy Tracker ${version}`);
 console.log("================================");
 console.log("Bugün enerjini nasıl hissediyorsun?");
 console.log("");
+askEnergy();
 
-rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
-    user.energyLevel = Number(answer);
-    energyHistory.push(user.energyLevel);
-    showReport();
-    rl.close();
-});
+function askEnergy() {
+    rl.question("Enerji Seviyeni gir (1-10): ", (answer) => {
+        user.energyLevel = Number(answer);
+        energyHistory.push(user.energyLevel);
+        showReport();
+
+        rl.question("Yeni giriş yapmak ister misin? (e/h): ", (choice) => {
+            if (choice === "e") {
+                askEnergy();
+            } else if (choice === "h") {
+                console.log("Görüşürüz! 👋");
+                rl.close();
+            } else {
+                console.log("Tanımlanamayan bir değişken girdiniz, tekrar girin: ");
+            }
+        })
+    })
+}
