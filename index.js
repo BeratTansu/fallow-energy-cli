@@ -47,10 +47,22 @@ rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
     for (let i = 0; i < energyHistory.length; i++) {
         console.log(`Gün ${i + 1}: ${energyHistory[i]}`);
     }
-    const totalEnergy = energyHistory.reduce(function(sum, number) {
+    const totalEnergy = energyHistory.reduce(function (sum, number) {
         return sum + number;
     }, 0)
     const ort = totalEnergy / energyHistory.length;
     console.log(`⭐ Ortalama Enerji: ${ort}/10`);
+    
+    const strongDays = energyHistory.filter(function(number) {
+        return number >= 7;
+    });
+
+    const lowDays = energyHistory.filter(function(number) {
+        return number <= 4;
+    });
+
+    console.log(`💪 Güçlü günlerin: ${strongDays}`);
+    console.log(`😴 Düşük enerjili günlerin: ${lowDays}`);
+
     rl.close();
 });
