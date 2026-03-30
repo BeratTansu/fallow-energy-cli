@@ -27,15 +27,7 @@ function getCoachMessage(energy) {
     }
 }
 
-console.log("================================");
-console.log(`  ${appName} Energy Tracker ${version}`);
-console.log("================================");
-console.log("Bugün enerjini nasıl hissediyorsun?");
-console.log("");
-
-rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
-    user.energyLevel = Number(answer);
-    energyHistory.push(user.energyLevel);
+function showReport() {
     const result = getCoachMessage(user.energyLevel);
 
     console.log("");
@@ -63,6 +55,17 @@ rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
 
     console.log(`💪 Güçlü günlerin: ${strongDays}`);
     console.log(`😴 Düşük enerjili günlerin: ${lowDays}`);
+}
 
+console.log("================================");
+console.log(`  ${appName} Energy Tracker ${version}`);
+console.log("================================");
+console.log("Bugün enerjini nasıl hissediyorsun?");
+console.log("");
+
+rl.question("Enerji seviyeni gir (1-10): ", function (answer) {
+    user.energyLevel = Number(answer);
+    energyHistory.push(user.energyLevel);
+    showReport();
     rl.close();
 });
